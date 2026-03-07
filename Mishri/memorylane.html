@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mishri's Memories</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            background: radial-gradient(circle at center, #ffafbd, #ffc3a0);
+            font-family: 'Poppins', sans-serif;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        #balloon-container {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .heart {
+            position: absolute;
+            color: #ff4d6d;
+            animation: floatUp 6s linear forwards;
+            font-size: 2rem;
+        }
+
+        @keyframes floatUp {
+            0% { transform: translateY(110vh) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; }
+        }
+
+        .header-text {
+            font-family: 'Dancing Script', cursive;
+            font-size: 3.5rem;
+            color: white;
+            text-shadow: 2px 4px 10px rgba(0,0,0,0.1);
+            margin-top: 10px;
+            z-index: 10;
+        }
+
+        /* Photos Gallery - Pure Center Logic */
+        .gallery {
+            position: relative;
+            width: 95%;
+            max-width: 1200px;
+            height: 75vh; /* Gallery ki height thodi badhai hai taaki saari photos samayein */
+            margin-top: 20px;
+            z-index: 5;
+        }
+
+        .photo-card {
+            position: absolute;
+            width: 160px; /* Thoda chota kiya taaki screen par sab dikhein */
+            background: white;
+            padding: 10px 10px 25px 10px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+            border-radius: 2px;
+            transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            cursor: pointer;
+        }
+
+        .photo-card img {
+            width: 100%;
+            height: 160px;
+            object-fit: contain;
+            border: 1px solid #eee;
+        }
+
+        .photo-card:hover {
+            transform: scale(1.3) rotate(0deg) !important;
+            z-index: 100 !important;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+        }
+
+        /* UPDATED POSITIONS: Sab ko center area mein lane ke liye */
+        /* Row 1 (Uper ki 4) */
+        .p1 { top: 5%; left: 5%; transform: rotate(-10deg); }
+        .p2 { top: 8%; left: 30%; transform: rotate(5deg); }
+        .p3 { top: 5%; left: 55%; transform: rotate(-8deg); }
+        .p4 { top: 8%; left: 80%; transform: rotate(12deg); }
+
+        /* Row 2 (Niche ki 4 - Inka 'top' ab 45%-50% par hai) */
+        .p5 { top: 48%; left: 10%; transform: rotate(8deg); }
+        .p6 { top: 52%; left: 35%; transform: rotate(-12deg); }
+        .p7 { top: 48%; left: 60%; transform: rotate(10deg); }
+        .p8 { top: 52%; left: 82%; transform: rotate(-5deg); }
+
+        .final-btn {
+            position: fixed;
+            bottom: 20px;
+            padding: 12px 35px;
+            background: #ff4d6d;
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(255, 77, 109, 0.4);
+            z-index: 20;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="balloon-container"></div>
+
+    <h1 class="header-text">Mishri's Sweetest Moments</h1>
+
+    <div class="gallery">
+        <div class="photo-card p1"><img src="1.jpg"><p style="text-align:center; margin:5px 0 0 0;">✨</p></div>
+        <div class="photo-card p2"><img src="2.jpg"><p style="text-align:center; margin:5px 0 0 0;">🌸</p></div>
+        <div class="photo-card p3"><img src="3.jpeg"><p style="text-align:center; margin:5px 0 0 0;">🍭</p></div>
+        <div class="photo-card p4"><img src="4.jpeg"><p style="text-align:center; margin:5px 0 0 0;">🎀</p></div>
+        <div class="photo-card p5"><img src="5.jpeg"><p style="text-align:center; margin:5px 0 0 0;">🎈</p></div>
+        <div class="photo-card p6"><img src="6.jpeg"><p style="text-align:center; margin:5px 0 0 0;">🧸</p></div>
+        <div class="photo-card p7"><img src="7.jpeg"><p style="text-align:center; margin:5px 0 0 0;">⭐</p></div>
+        <div class="photo-card p8"><img src="8.jpeg"><p style="text-align:center; margin:5px 0 0 0;">💖</p></div>
+    </div>
+
+    <button class="final-btn" onclick="location.href='cake.html'">Restart Magic ❤️</button>
+
+    <script>
+        function createHeart() {
+            const container = document.getElementById('balloon-container');
+            const heart = document.createElement('div');
+            heart.innerHTML = "❤️";
+            heart.className = 'heart';
+            heart.style.left = Math.random() * 100 + "vw";
+            heart.style.animationDuration = (Math.random() * 3 + 3) + "s";
+            heart.style.fontSize = (Math.random() * 15 + 15) + "px";
+            container.appendChild(heart);
+            setTimeout(() => heart.remove(), 6000);
+        }
+        setInterval(createHeart, 400);
+    </script>
+</body>
+</html>
